@@ -16,7 +16,8 @@ pipeline {
 
     stage('Docker') {
       steps {
-        sh 'docker build -t mybuildimage .'
+        sh '''docker.build(\'ChaoticPixel/mybuildimage\')
+'''
       }
     }
 
@@ -26,14 +27,11 @@ pipeline {
         DOCKER_CREDENTIALS = 'docker-hub-credentials-id'
       }
       steps {
-        script {
-          docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_creds_id')
+        sh '''docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\')
           {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
-          }
-        }
-
+          }'''
       }
     }
 
