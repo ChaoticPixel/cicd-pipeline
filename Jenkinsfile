@@ -16,7 +16,7 @@ pipeline {
 
     stage('Docker') {
       steps {
-        sh '''docker.build(\'ChaoticPixel/mybuildimage\')
+        sh '''docker build -t ChaoticPixel/mybuildimage
 '''
       }
     }
