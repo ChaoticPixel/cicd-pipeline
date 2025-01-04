@@ -24,7 +24,8 @@ script ./scripts/build.sh'''
       steps {
         script {
           withDockerRegistry(credentialsId: 'docker-hub-credentials-id', url: 'https://registry.hub.docker.com') {
-            docker.push('mybuildimage')
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
           }
         }
 
