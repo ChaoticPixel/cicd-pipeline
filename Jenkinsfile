@@ -24,7 +24,7 @@ pipeline {
 
     stage('Push') {
       steps {
-          docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\'){
+          docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_creds_id'){
             docker.image("${IMAGE_NAME}:latest").push()
           }
       }
