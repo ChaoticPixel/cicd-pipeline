@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('build') {
+    stage('Build') {
       steps {
         sh 'chmod +x scripts/build.sh'
         sh 'script ./scripts/build.sh'
@@ -14,9 +14,20 @@ pipeline {
       }
     }
 
-    stage('Docker build') {
+    stage('Docker') {
       steps {
         sh 'docker build -t mybuildimage .'
+      }
+    }
+
+    stage('Push') {
+      steps {
+        sh '''docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\')  
+
+{ 
+app.push("${env.BUILD_NUMBER}") 
+app.push("latest") 
+}'''
       }
     }
 
