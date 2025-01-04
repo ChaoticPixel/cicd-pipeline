@@ -23,5 +23,14 @@ script ./scripts/build.sh'''
       }
     }
 
+    stage('Push') {
+      steps {
+        script {
+          docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_creds_id')
+        }
+
+      }
+    }
+
   }
 }
