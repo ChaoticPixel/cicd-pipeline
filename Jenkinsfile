@@ -16,10 +16,7 @@ script ./scripts/build.sh'''
 
     stage('Docker') {
       steps {
-        script {
-          docker build -t mybuildimage
-        }
-
+        sh 'docker build -t mybuildimage .'
       }
     }
 
