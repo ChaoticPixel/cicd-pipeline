@@ -16,7 +16,7 @@ script ./scripts/build.sh'''
 
     stage('Docker') {
       steps {
-        sh 'docker build -t mybuildimage .'
+        sh 'docker build -t chaoticpixel/mybuildimage .'
       }
     }
 
