@@ -16,10 +16,7 @@ script ./scripts/build.sh'''
 
     stage('Docker') {
       steps {
-        script {
-          docker.build('duman_image_1')
-        }
-
+        sh 'docker build -t mybuildimage .'
       }
     }
 
