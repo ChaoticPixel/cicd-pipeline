@@ -36,3 +36,4 @@ pipeline {
     IMAGE_NAME = 'chaoticpixel/mybuildimage'
   }
 }
+}
