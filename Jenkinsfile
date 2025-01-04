@@ -24,7 +24,7 @@ script ./scripts/build.sh'''
       steps {
         script {
           withDockerRegistry(credentialsId: 'docker-hub-credentials-id', url: 'https://registry.hub.docker.com') {
-            docker.image('chaoticpixel/cicd/mybuildimage').push("latest")
+            docker.image('chaoticpixel/mybuildimage').push("latest")
           }
         }
 
