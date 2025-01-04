@@ -16,28 +16,23 @@ pipeline {
 
     stage('Docker') {
       steps {
-        sh '''docker build -t ChaoticPixel/mybuildimage
-'''
-      }
+          script {
+                    // Сборка Docker-образа
+            docker.build("${IMAGE_NAME}:latest")
+          }
     }
 
     stage('Push') {
-      environment {
-        IMAGE_NAME = 'chaoticpixel/mybuildimage '
-        DOCKER_CREDENTIALS = 'docker-hub-credentials-id'
-      }
       steps {
-        sh '''docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\')
-          {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-          }'''
+          docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\'){
+            docker.image("${IMAGE_NAME}:latest").push()
+          }
       }
     }
 
   }
   environment {
     DOCKER_CREDENTIALS = 'docker-hub-credentials-id	'
-    IMAGE_NAME = 'chaoticpixel/'
+    IMAGE_NAME = 'chaoticpixel/mybuildimage'
   }
 }
