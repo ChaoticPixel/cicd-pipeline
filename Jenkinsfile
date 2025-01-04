@@ -21,6 +21,10 @@ pipeline {
     }
 
     stage('Push') {
+      environment {
+        IMAGE_NAME = 'chaoticpixel/mybuildimage '
+        DOCKER_CREDENTIALS = 'docker-hub-credentials-id'
+      }
       steps {
         script {
           docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_creds_id')  {
@@ -32,5 +36,9 @@ pipeline {
       }
     }
 
+  }
+  environment {
+    DOCKER_CREDENTIALS = 'docker-hub-credentials-id	'
+    IMAGE_NAME = 'chaoticpixel/'
   }
 }
