@@ -20,15 +20,4 @@ pipeline {
             docker.build('esmagulov:latest')
           }
     }
-
-    stage('Push') {
-          steps {
-              script {
-                docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_creds_id') {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
-                }
-              }
-        }
-  }
 }
