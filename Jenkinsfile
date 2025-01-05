@@ -23,7 +23,7 @@ script ./scripts/build.sh'''
     stage('Push') {
       steps {
         script {
-          withDockerRegistry(credentialsId: 'docker-hub-credentials-id', url: 'https://registry.hub.docker.com') {
+          withDockerRegistry(credentialsId: 'docker-hub-credentials-id', url: 'https://index.docker.io/v1/') {
             docker.image('chaoticpixel/cicd').push("latest")
             docker.image('chaoticpixel/cicd').push(env.BUILD_NUMBER)
           }
